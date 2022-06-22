@@ -1,0 +1,14 @@
+
+version: 2
+
+models:
+
+    - name: DIM_PRODUCT
+      description: "Dimension Table to load Customer data"
+      columns:
+        - name: ProductSourceKey
+          description: "The primary key for this table"
+          tests:
+           - unique
+           - not_null
+           
