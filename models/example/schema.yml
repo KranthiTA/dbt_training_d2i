@@ -21,9 +21,15 @@ models:
                 - not_null
 
     - name: DIMPRODUCT
-      description: "Dimension Table to load Customer data"
+      description: "Dimension Table to load product data"
       columns:
         - name: ProductSourceKey
+          description: "The primary key for this table"
+
+    - name: DIMCUSTOMER
+      description: "Dimension Table to load Customer data"
+      columns:
+        - name: customerSourceKey
           description: "The primary key for this table"
           
 
