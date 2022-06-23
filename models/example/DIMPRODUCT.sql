@@ -1,23 +1,41 @@
 {{
+
     config(
+
         materialized='incremental',
-		unique_key='ProductSourceKey',
-		incremental_strategy='merge'
+
+        unique_key='ProductSourceKey',
+
+        incremental_strategy='merge'
+
     )
+
 }}
 
+
+
 select 
+
 seq2.nextval as Product_id,
+
 Product_id as PRODUCTSOURCEKEY,
+
 Category as CATEGORY,
+
 Sub_Category as SUBCATEGORY,
+
 product_name as PRODUCTNAME,
- Current_timestamp() as CREATEDDATE	,
-'fivetran' as CREATEDBY	,
-_FIVETRAN_SYNCED as MODIFIEDDATE	,
+
+ Current_timestamp() as CREATEDDATE,
+
+'fivetran' as CREATEDBY,
+
+_FIVETRAN_SYNCED as MODIFIEDDATE,
+
 'fivetran' as MODIFIEDBY
-    from DATA_TO_INSIGHTS.GOOGLE_DRIVE.PRODUCT_COMPLETE
- 
+
+    from DATA_TO_INSIGHTS.GOOGLE_DRIVE.PRODUCT_COMPLETE
+
 
 
 {% if is_incremental() %}
