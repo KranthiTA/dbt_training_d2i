@@ -10,7 +10,7 @@ select
 seq2.nextval as PRODUCTID,
 Product_id as PRODUCTSOURCEKEY,
 product_name as PRODUCTNAME,
-NUll as SEGMENT,
+'NUll' as SEGMENT,
 Sub_Category as SUBCATEGORY,
 Category as CATEGORY,
 Current_timestamp() as CREATEDDATE,
