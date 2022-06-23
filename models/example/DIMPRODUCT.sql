@@ -7,19 +7,18 @@
 }}
 
 select 
-seq2.nextval as PRODUCTID,
-Product_id as PRODUCTSOURCEKEY,
-product_name as PRODUCTNAME,
-null as SEGMENT,
-Sub_Category as SUBCATEGORY,
-Category as CATEGORY,
-Current_timestamp() as CREATEDDATE,
-'fivetran' as CREATEDBY,
-_FIVETRAN_SYNCED as MODIFIEDDATE,
-'fivetran' as MODIFIEDBY
+seq2.nextval as PRODUCTID
+,Product_id as PRODUCTSOURCEKEY
+,product_name as PRODUCTNAME
+,null as SEGMENT
+,Sub_Category as SUBCATEGORY
+,Category as CATEGORY
+,Current_timestamp() as CREATEDDATE
+,'fivetran' as CREATEDBY
+,_FIVETRAN_SYNCED as MODIFIEDDATE
+,'fivetran' as MODIFIEDBY
 from DATA_TO_INSIGHTS.GOOGLE_DRIVE.PRODUCT_COMPLETE
 
- 
 
 
 {% if is_incremental() %}
