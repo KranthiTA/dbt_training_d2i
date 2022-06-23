@@ -16,7 +16,7 @@
 
 select 
 
-seq2.nextval as Product_id,
+seq2.nextval as Productid,
 
 Product_id as PRODUCTSOURCEKEY,
 
