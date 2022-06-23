@@ -19,18 +19,8 @@ models:
             tests:
                 - unique
                 - not_null
- 
 
-    - name: dbt_sales_model
-      description: "Dimension Table to load Customer data"
-      columns:
-        - name: ProductSourceKey
-          description: "The primary key for this table"
-          tests:
-           - unique
-           - not_null
-
-    - name: DIM_PRODUCT
+    - name: DIMPRODUCT
       description: "Dimension Table to load Customer data"
       columns:
         - name: ProductSourceKey

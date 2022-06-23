@@ -16,7 +16,8 @@ product_name as PRODUCTNAME,
 'fivetran' as CREATEDBY	,
 _FIVETRAN_SYNCED MODIFIEDDATE	,
 'fivetran' MODIFIEDBY
-	       from GOOGLE_DRIVE.PRODUCT_COMPLETE
+    from DATA_TO_INSIGHTS.GOOGLE_DRIVE.PRODUCT_COMPLETE
+ 
 
 
 {% if is_incremental() %}
