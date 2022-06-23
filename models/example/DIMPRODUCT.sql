@@ -16,7 +16,7 @@ product_name as PRODUCTNAME,
 'fivetran' as CREATEDBY	,
 _FIVETRAN_SYNCED MODIFIEDDATE	,
 'fivetran' MODIFIEDBY
-    from product_complete
+    from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."PRODUCT_COMPLETE"
  
 
 
