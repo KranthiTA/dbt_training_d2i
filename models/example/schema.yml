@@ -25,7 +25,7 @@ models:
       columns:
         - name: ProductSourceKey
           description: "The primary key for this table"
-          tests:
-            - unique
+          
+
             
            
