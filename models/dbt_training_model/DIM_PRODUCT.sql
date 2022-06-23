@@ -1,8 +1,6 @@
 {{
     config(
-        materialized='incremental',
-		unique_key='ProductSourceKey',
-		incremental_strategy='merge'
+        materialized='incremental'
     )
 }}
 
@@ -16,7 +14,8 @@ product_name as PRODUCTNAME,
 'fivetran' as CREATEDBY	,
 _FIVETRAN_SYNCED MODIFIEDDATE	,
 'fivetran' MODIFIEDBY
-	       from GOOGLE_DRIVE.PRODUCT_COMPLETE
+	        from {{source('DIM_PRODUCT','PRODUCT_COMPLETE')}}
+{% if is_incremental() %}  
 
 
 {% if is_incremental() %}
