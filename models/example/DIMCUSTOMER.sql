@@ -22,13 +22,13 @@ seq1.nextval as CUSTOMERID
 from DATA_TO_INSIGHTS.GOOGLE_DRIVE.CUSTOMER_COMPLETE
 
 
-
+/*
 {% if is_incremental() %}
 
   -- this filter will only be applied on an incremental run
   WHERE _FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
 
-{% endif %}
+{% endif %}*/
 /*
     Uncomment the line below to remove records with null `id` values
 */
