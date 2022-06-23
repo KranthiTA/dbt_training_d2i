@@ -14,8 +14,8 @@ Sub_Category as SUBCATEGORY,
 product_name as PRODUCTNAME,
  Current_timestamp() as CREATEDDATE	,
 'fivetran' as CREATEDBY	,
-_FIVETRAN_SYNCED MODIFIEDDATE	,
-'fivetran' MODIFIEDBY
+_FIVETRAN_SYNCED as MODIFIEDDATE	,
+'fivetran' as MODIFIEDBY
     from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."PRODUCT_COMPLETE"
  
 
