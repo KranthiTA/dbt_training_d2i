@@ -108,7 +108,7 @@
 		, {{email}}  EMAIL 
 	 {% endfor %}
 	 {% for address in address_list %}
-		, {{'address'}} AS ADDRESS
+		, {{address}} AS ADDRESS_list
      {% endfor %}
 	 {% for isactive in isactive_list %}
 		, {{isactive}} AS ISACTIVE
