@@ -119,7 +119,7 @@
     , 'fivetran' AS  MODIFIEDBY
 FROM 
     {% for cust_tablename in cust_tablename_list %}
-    DATA_TO_INSIGHTS.DATA_TO_INSIGHTS_RAW.{{cust_tablename}}
+    DATA_TO_INSIGHTS.GOOGLE_DRIVE.{{cust_tablename}}
 	{% endfor %}
   
 
