@@ -9,7 +9,7 @@ models:
         description: "The primary key for this table"
         tests:
           - unique
-          - not_null
+          
 
   - name: DIM_PRODUCT
     description: "Dimension Table to load Customer data"
@@ -18,7 +18,7 @@ models:
         description: "The primary key for this table"
         tests:
           - unique
-          - not_null
+          
    
   - name: DIM_CAMPAIGN
     description: "Dimension Table to load Campaign data"
@@ -27,7 +27,7 @@ models:
         description: "The primary key for this table"
         tests:
           - unique
-          - not_null
+          
 
   - name: FACT_SALES
     description: "Fact Sales Table to load the Sales Data"
@@ -36,7 +36,7 @@ models:
         description: "The primary key for this table"
         tests:
           - unique
-          - not_null
+          
 
             
            
