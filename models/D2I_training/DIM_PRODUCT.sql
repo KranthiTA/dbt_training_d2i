@@ -56,7 +56,7 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY {{ProductSourceKey}}) AS PRODUCTID,
     {{ProductSourceKey}} AS PRODUCTSOURCEKEY
 {% endfor %}
-{% for productname in productname_list},
+{% for productname in productname_list}
 {{productname}} as PRODUCTNAME
 {% endfor %}
 {% for segment in segment_list %},
