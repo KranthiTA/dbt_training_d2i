@@ -131,7 +131,7 @@ SELECT
 	,'fivetran' as modifiedby
 FROM 
 {% for tablename in tablename_list %}
-    DATA_TO_INSIGHTS.RDS_RAW_DATA_DBO.{{tablename}}
+    DATA_TO_INSIGHTS.GOOGLE_DRIVE.{{tablename}}
  {% endfor %}
 
 {% if is_incremental() %}

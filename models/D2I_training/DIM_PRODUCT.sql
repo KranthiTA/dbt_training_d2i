@@ -9,7 +9,7 @@
 
 {% set ProductSourceKey = run_query(' select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME= \'PRODUCT_ID\' AND D_2_I_ENTITY_NAME = \'Product\'')%}
 {% if execute %}
-{% set results_list = customersourcekey.columns[0].values() %}
+{% set results_list = ProductSourceKey.columns[0].values() %}
 {% else %}
 {% set results_list = [] %}
 {% endif %}
@@ -73,7 +73,7 @@ _FIVETRAN_SYNCED AS MODIFIEDDATE,
 'fivetran' AS  MODIFIEDBY
 FROM 
 {% for tablename in tablename_list %}
-    DATA_TO_INSIGHTS.RDS_RAW_DATA_DBO.{{tablename}}
+    DATA_TO_INSIGHTS.GOOGLE_DRIVE.{{tablename}}
 {% endfor %}
 
 {% if is_incremental() %}

@@ -94,9 +94,9 @@
     {{customersourcekey}} AS CUSTOMERSOURCEKEY 
     {% endfor %}
 	{% for firstname in firstname_list %}
-	{% for lastname in lastname_list %}
-		, {{firstname}} ||', '||{{lastname}} AS CUSTOMERNAME 
-	 {% endfor %}
+	
+		, {{firstname}}  AS CUSTOMERNAME 
+	
 	 {% endfor %}
 	 {% for age in age_list %}
 		, {{age}} AS AGE 
@@ -107,9 +107,9 @@
 	 {% for email in email_list %}
 		, {{email}}  EMAIL 
 	 {% endfor %}
-	 {% for address in address_list %}
-		, {{address}} AS ADDRESS_list
-     {% endfor %}
+	 --{% for address in address_list %}
+		--, {{address}} AS ADDRESS_LIST
+     --{% endfor %}
 	 {% for isactive in isactive_list %}
 		, {{isactive}} AS ISACTIVE
 	 {% endfor %}
