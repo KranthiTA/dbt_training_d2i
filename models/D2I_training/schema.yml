@@ -2,36 +2,41 @@
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: DIM_CUSTOMER
+    description: "Dimension Table to load Customer data"
+    columns:
+      - name: CUSTOMERSOURCEKEY 
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: DIM_PRODUCT
+    description: "Dimension Table to load Customer data"
+    columns:
+      - name: ProductSourceKey
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+   
+  - name: DIM_CAMPAIGN
+    description: "Dimension Table to load Campaign data"
+    columns:
+      - name: CampaignSourceKey
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
 
-    - name: DIMPRODUCT
-      description: "Dimension Table to load product data"
-      columns:
-        - name: ProductSourceKey
-          description: "The primary key for this table"
-
-    - name: DIMCUSTOMER
-      description: "Dimension Table to load Customer data"
-      columns:
-        - name: customerSourceKey
-          description: "The primary key for this table"
-          
+  - name: FACT_SALES
+    description: "Fact Sales Table to load the Sales Data"
+    columns:
+      - name: CUSTOMERID 
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
 
             
            
