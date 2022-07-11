@@ -35,4 +35,4 @@ models:
   D2I_training:
     # Applies to all files under models/example/
     D2I_training:
-      materialized: view
+      materialized: incremental
