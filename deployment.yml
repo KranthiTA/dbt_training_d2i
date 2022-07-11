@@ -14,3 +14,5 @@ jobs:
        command: dbt clean
      - name: run models
        command: dbt run
+     - name: test models
+       command: dbt test
