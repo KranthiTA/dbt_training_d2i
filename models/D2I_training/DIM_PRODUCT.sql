@@ -79,6 +79,6 @@ FROM
 {% if is_incremental() %}
 
   -- this filter will only be applied on an incremental run
-  WHERE to_date(_FIVETRAN_SYNCED) > (select max(to_date(MODIFIEDDATE)) from  {{ this }})
+  WHERE to_date(_FIVETRAN_SYNCED) > (select max(to_date(_FIVETRAN_SYNCED)) from  {{ this }})
 
 {% endif %}
