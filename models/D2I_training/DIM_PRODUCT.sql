@@ -69,7 +69,7 @@ SELECT
 {% endfor %},
 current_timestamp() AS CREATEDDATE,
 'fivetran' AS  CREATEDBY,
-to_date(_FIVETRAN_SYNCED) AS MODIFIEDDATE,
+(_FIVETRAN_SYNCED) AS MODIFIEDDATE,
 'fivetran' AS  MODIFIEDBY
 FROM 
 {% for tablename in tablename_list %}
