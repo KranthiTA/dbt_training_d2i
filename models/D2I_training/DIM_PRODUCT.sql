@@ -69,7 +69,7 @@ SELECT
 {% endfor %},
 current_timestamp() AS CREATEDDATE,
 'fivetran' AS  CREATEDBY,
-_FIVETRAN_SYNCED AS MODIFIEDDATE,
+to_date(_FIVETRAN_SYNCED) AS MODIFIEDDATE,
 'fivetran' AS  MODIFIEDBY
 FROM 
 {% for tablename in tablename_list %}
@@ -79,6 +79,6 @@ FROM
 {% if is_incremental() %}
 
   -- this filter will only be applied on an incremental run
-  WHERE _FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
+  WHERE to_date(_FIVETRAN_SYNCED) > (select max(to_date(MODIFIEDDATE)) from  {{ this }})
 
 {% endif %}
