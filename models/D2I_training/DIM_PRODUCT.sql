@@ -56,16 +56,16 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY {{ProductSourceKey}}) AS PRODUCTID,
     {{ProductSourceKey}} AS PRODUCTSOURCEKEY
 {% endfor %}
-{% for productname in productname_list},
+{% for productname in productname_list %},
 {{productname}} as PRODUCTNAME
 {% endfor %}
 {% for segment in segment_list %},
 {{segment}} as SEGMENT
 {% endfor %}
-{% for subcategory in subcategory_list},
+{% for subcategory in subcategory_list %},
 {{subcategory}} as SUBCATEGORY
 {% endfor %}
-{% for category in category_list},{{category}} AS CATEGORY
+{% for category in category_list %},{{category}} AS CATEGORY
 {% endfor %},
 current_timestamp() AS CREATEDDATE,
 'fivetran' AS  CREATEDBY,
