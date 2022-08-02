@@ -1,6 +1,6 @@
 --customersourcekey
 
-{% set customersourcekey = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'CUSTOMERSOURCEKEY\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set customersourcekey = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'CUSTOMERSOURCEKEY\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set results_list = customersourcekey.columns[0].values() %}
 {% else %}
@@ -9,7 +9,7 @@
 
 --FIRSTNAME
 
-{% set firstname = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'FIRSTNAME\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set firstname = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'FIRSTNAME\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set firstname_list = firstname.columns[0].values() %}
 {% else %}
@@ -18,7 +18,7 @@
 
 --LASTNAME
 
-{% set lastname = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'LASTNAME\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set lastname = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'LASTNAME\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set lastname_list = lastname.columns[0].values() %}
 {% else %}
@@ -27,7 +27,7 @@
 
 --AGE
 
-{% set age = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'AGE\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set age = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'AGE\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set age_list = age.columns[0].values() %}
 {% else %}
@@ -36,7 +36,7 @@
 
 --GENDER
 
-{% set gender = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'GENDER\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set gender = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'GENDER\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set gender_list = gender.columns[0].values() %}
 {% else %}
@@ -45,7 +45,7 @@
 
 --EMAIL
 
-{% set email = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'EMAIL\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set email = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'EMAIL\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set email_list = email.columns[0].values() %}
 {% else %}
@@ -54,7 +54,7 @@
 
 --ADDRESS
 
-{% set address = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ADDRESS\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set address = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ADDRESS\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set address_list = address.columns[0].values() %}
 {% else %}
@@ -63,7 +63,7 @@
 
 --ISACTIVE
 
-{% set isactive = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ISACTIVE\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set isactive = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ISACTIVE\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set isactive_list = isactive.columns[0].values() %}
 {% else %}
@@ -72,7 +72,7 @@
 
 --TABLE NAME
 
-{% set cust_tablename = run_query('select Top 1 CUSTOMER_ENTITY_TABLE_NAME from "DATA_TO_INSIGHTS"."GOOGLE_DRIVE"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'CUSTOMERSOURCEKEY\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set cust_tablename = run_query('select Top 1 CUSTOMER_ENTITY_TABLE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'CUSTOMERSOURCEKEY\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set cust_tablename_list = cust_tablename.columns[0].values() %}
 {% else %}
@@ -94,9 +94,9 @@
     {{customersourcekey}} AS CUSTOMERSOURCEKEY 
     {% endfor %}
 	{% for firstname in firstname_list %}
-	
-		, {{firstname}}  AS CUSTOMERNAME 
-	
+	{% for lastname in lastname_list %}
+		, {{firstname}} ||', '||{{lastname}} AS CUSTOMERNAME 
+	 {% endfor %}
 	 {% endfor %}
 	 {% for age in age_list %}
 		, {{age}} AS AGE 
@@ -107,9 +107,9 @@
 	 {% for email in email_list %}
 		, {{email}}  EMAIL 
 	 {% endfor %}
-	 --{% for address in address_list %}
-		--, {{address}} AS ADDRESS_LIST
-     --{% endfor %}
+	 {% for address in address_list %}
+		, {{address}} AS ADDRESS
+     {% endfor %}
 	 {% for isactive in isactive_list %}
 		, {{isactive}} AS ISACTIVE
 	 {% endfor %}
@@ -119,7 +119,7 @@
     , 'fivetran' AS  MODIFIEDBY
 FROM 
     {% for cust_tablename in cust_tablename_list %}
-    DATA_TO_INSIGHTS.GOOGLE_DRIVE.{{cust_tablename}}
+    DATA_TO_INSIGHTS.D2I_DATASET.{{cust_tablename}}
 	{% endfor %}
   
 
