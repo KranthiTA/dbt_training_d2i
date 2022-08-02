@@ -76,9 +76,9 @@ FROM
     DATA_TO_INSIGHTS.D2I_DATASET.{{tablename}}
 {% endfor %}
 
---{% if is_incremental() %}
+{% if is_incremental() %}
 
   -- this filter will only be applied on an incremental run
-  --WHERE _FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
+  WHERE _FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
 
---{% endif %}
+{% endif %}
