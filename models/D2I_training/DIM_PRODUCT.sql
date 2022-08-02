@@ -9,7 +9,7 @@
 
 {% set ProductSourceKey = run_query(' select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME= \'PRODUCT_ID\' AND D_2_I_ENTITY_NAME = \'Product\'')%}
 {% if execute %}
-{% set results_list = customersourcekey.columns[0].values() %}
+{% set results_list = ProductSourceKey.columns[0].values() %}
 {% else %}
 {% set results_list = [] %}
 {% endif %}
@@ -76,9 +76,9 @@ FROM
     DATA_TO_INSIGHTS.D2I_DATASET.{{tablename}}
 {% endfor %}
 
-{% if is_incremental() %}
+--{% if is_incremental() %}
 
   -- this filter will only be applied on an incremental run
-  WHERE _FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
+  --WHERE _FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
 
-{% endif %}
+--{% endif %}

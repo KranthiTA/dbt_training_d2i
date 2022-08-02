@@ -54,9 +54,9 @@
 
 --ADDRESS
 
-{% set address = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ADDRESS\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set address_cust = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ADDRESS_CUST\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
-{% set address_list = address.columns[0].values() %}
+{% set address_list = address_cust.columns[0].values() %}
 {% else %}
 {% set address_list = [] %}
 {% endif %}
@@ -107,8 +107,8 @@
 	 {% for email in email_list %}
 		, {{email}}  EMAIL 
 	 {% endfor %}
-	 {% for address in address_list %}
-		, {{address}} AS ADDRESS
+	 {% for address_cust in address_list %}
+		, {{address_cust}} AS "ADDRESS"
      {% endfor %}
 	 {% for isactive in isactive_list %}
 		, {{isactive}} AS ISACTIVE
