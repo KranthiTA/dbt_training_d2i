@@ -8,8 +8,9 @@
 
 
 SELECT
-    FACTSALES_SK.nextval AS FACTSALESID,
-     cust.customerid AS CUSTOMERID
+    FACTSALES_SK.nextval AS FACTSALESID
+    ,sal.order_id as ORDERID
+    ,cust.customerid AS CUSTOMERID
     , camp.campaignid AS CAMPAIGNID
     , ddorder.dateid AS ORDERDATEID
     --, dl.locationid AS ORDERLOCATIONID
