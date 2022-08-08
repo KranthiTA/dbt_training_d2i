@@ -13,5 +13,4 @@ jobs:
      - name: clean target
        command: dbt clean
      - name: run models
-       #command: dbt run
-       command: dbt run --select FACT_SALES
+       command: dbt run
