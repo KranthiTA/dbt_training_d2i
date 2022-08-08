@@ -10,7 +10,8 @@ jobs:
    targetName: prod # The name of the target that will be used when running the job. If it's not specified, the target will be named 'prod'.
    schedule: '0 */12 * * *' # The example will run every 12 hrs, 12*60=720 minutes. Note that the cron string is quoted as otherwise it will be treated as invalid alias node (see https://yaml.org/spec/1.2/spec.html#*%20alias// for details)
    steps:
-    #  - name: clean target
-    #    command: dbt clean
+     - name: clean target
+       command: dbt clean
      - name: run models
-       command: dbt run
+       #command: dbt run
+       command: dbt run --select FACT_SALES
