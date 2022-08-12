@@ -35,7 +35,7 @@ FROM
     LEFT OUTER JOIN DATA_TO_INSIGHTS.DATA_TO_INSIGHTS.DIMDATE ddorder on ddorder.date=to_date(sal.ORDER_DATE)
     LEFT OUTER JOIN DATA_TO_INSIGHTS.DATA_TO_INSIGHTS.DIMDATE ddship on ddship.date=to_date(sal.SHIP_DATE)
     LEFT OUTER JOIN DATA_TO_INSIGHTS.DBT_KT.DIM_PRODUCT dp on dp.productsourcekey=sal.PRODUCT_ID
- where order_id='CAA-2022-1038001'
+
 
 {% if is_incremental() %}
 
