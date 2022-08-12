@@ -13,6 +13,7 @@ SELECT
     ,cust.customerid AS CUSTOMERID
     , camp.campaignid AS CAMPAIGNID
     , ddorder.dateid AS ORDERDATEID
+    , NULL AS ORDERLOCATIONID
     --, dl.locationid AS ORDERLOCATIONID
     , dp.productid AS PRODUCTID
     , ddship.dateid AS SHIPDATEID
@@ -21,6 +22,7 @@ SELECT
     , SAL.PROFIT AS PROFIT
     , SAL.QUANTITY AS QUANTITY
     , SAL.SALES AS SALEAMOUNT
+    , NULL AS SHIPPINGCOST
     --, SAL.VALUE_SHIPPING_COST AS SHIPPINGCOST
     ,  current_timestamp() AS CREATEDDATE
     , 'fivetran' AS  CREATEDBY
@@ -33,7 +35,7 @@ FROM
     LEFT OUTER JOIN DATA_TO_INSIGHTS.DATA_TO_INSIGHTS.DIMDATE ddorder on ddorder.date=to_date(sal.ORDER_DATE)
     LEFT OUTER JOIN DATA_TO_INSIGHTS.DATA_TO_INSIGHTS.DIMDATE ddship on ddship.date=to_date(sal.SHIP_DATE)
     LEFT OUTER JOIN DATA_TO_INSIGHTS.DBT_KT.DIM_PRODUCT dp on dp.productsourcekey=sal.PRODUCT_ID
-
+ where order_id='CAA-2022-1038001'
 
 {% if is_incremental() %}
 
