@@ -1,6 +1,6 @@
 --customersourcekey
 
-{% set customersourcekey = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'CUSTOMERSOURCEKEY\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set customersourcekey = run_query('select CUSTOMER_ATTRIBUTE_NAME from "D2I_TRAINING"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'CUSTOMERSOURCEKEY\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set results_list = customersourcekey.columns[0].values() %}
 {% else %}
@@ -9,7 +9,7 @@
 
 --FIRSTNAME
 
-{% set firstname = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'FIRSTNAME\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set firstname = run_query('select CUSTOMER_ATTRIBUTE_NAME from "D2I_TRAINING"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'FIRSTNAME\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set firstname_list = firstname.columns[0].values() %}
 {% else %}
@@ -18,7 +18,7 @@
 
 --LASTNAME
 
-{% set lastname = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'LASTNAME\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set lastname = run_query('select CUSTOMER_ATTRIBUTE_NAME from "D2I_TRAINING"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'LASTNAME\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set lastname_list = lastname.columns[0].values() %}
 {% else %}
@@ -27,7 +27,7 @@
 
 --AGE
 
-{% set age = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'AGE\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set age = run_query('select CUSTOMER_ATTRIBUTE_NAME from "D2I_TRAINING"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'AGE\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set age_list = age.columns[0].values() %}
 {% else %}
@@ -36,7 +36,7 @@
 
 --GENDER
 
-{% set gender = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'GENDER\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set gender = run_query('select CUSTOMER_ATTRIBUTE_NAME from "D2I_TRAINING"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'GENDER\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set gender_list = gender.columns[0].values() %}
 {% else %}
@@ -45,7 +45,7 @@
 
 --EMAIL
 
-{% set email = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'EMAIL\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set email = run_query('select CUSTOMER_ATTRIBUTE_NAME from "D2I_TRAINING"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'EMAIL\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set email_list = email.columns[0].values() %}
 {% else %}
@@ -54,7 +54,7 @@
 
 --ADDRESS
 
-{% set address_cust = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ADDRESS_CUST\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set address_cust = run_query('select CUSTOMER_ATTRIBUTE_NAME from "D2I_TRAINING"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ADDRESS_CUST\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set address_list = address_cust.columns[0].values() %}
 {% else %}
@@ -63,7 +63,7 @@
 
 --ISACTIVE
 
-{% set isactive = run_query('select CUSTOMER_ATTRIBUTE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ISACTIVE\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set isactive = run_query('select CUSTOMER_ATTRIBUTE_NAME from "D2I_TRAINING"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'ISACTIVE\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set isactive_list = isactive.columns[0].values() %}
 {% else %}
@@ -72,7 +72,7 @@
 
 --TABLE NAME
 
-{% set cust_tablename = run_query('select Top 1 CUSTOMER_ENTITY_TABLE_NAME from "DATA_TO_INSIGHTS"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'CUSTOMERSOURCEKEY\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
+{% set cust_tablename = run_query('select Top 1 CUSTOMER_ENTITY_TABLE_NAME from "D2I_TRAINING"."D2I_DATASET"."MAPPING_TEMPLATE" WHERE D_2_I_ATTRIBUTE_NAME = \'CUSTOMERSOURCEKEY\' AND D_2_I_ENTITY_NAME = \'Customer\'') %}
 {% if execute %}
 {% set cust_tablename_list = cust_tablename.columns[0].values() %}
 {% else %}
@@ -88,11 +88,12 @@
     )
 }}
 
-    SELECT DimCustomer_SK.nextval as CUSTOMERID,
-    {% for customersourcekey in results_list %}
-	 
-    {{customersourcekey}} AS CUSTOMERSOURCEKEY 
-    {% endfor %}
+	select
+	{% for customersourcekey in results_list %}
+    ROW_NUMBER() OVER (ORDER BY {{customersourcekey}}) AS CUSTOMERID,
+    {{customersourcekey}} AS CUSTOMERSOURCEKEY
+	{% endfor %}
+   
 	{% for firstname in firstname_list %}
 	{% for lastname in lastname_list %}
 		, {{firstname}} ||', '||{{lastname}} AS CUSTOMERNAME 
@@ -119,13 +120,13 @@
     , 'fivetran' AS  MODIFIEDBY
 FROM 
     {% for cust_tablename in cust_tablename_list %}
-    DATA_TO_INSIGHTS.D2I_DATASET.{{cust_tablename}}
+    D2I_TRAINING.D2I_DATASET.{{cust_tablename}}
 	{% endfor %}
   
 
-{% if is_incremental() %}
+--{% if is_incremental() %}
 
  -- this filter will only be applied on an incremental run
-  WHERE _FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
+  --WHERE _FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
 
-{% endif %}
+--{% endif %}
