@@ -32,12 +32,12 @@ FROM
     LEFT OUTER JOIN D2I_TRAINING.DATA_TO_INSIGHTS.DIMDATE ddship on ddship.date=to_date(sal.SHIP_DATE)
     LEFT OUTER JOIN D2I_TRAINING.DATA_TO_INSIGHTS.DIMPRODUCT dp on dp.productsourcekey=sal.PRODUCT_ID
 
---{% if is_incremental() %}
+{% if is_incremental() %}
 
-  -- this filter will only be applied on an incremental run
-  --WHERE SAL._FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
+  ---this filter will only be applied on an incremental run
+  WHERE SAL._FIVETRAN_SYNCED > (select max(MODIFIEDDATE) from  {{ this }})
 
---{% endif %}
+{% endif %}
 /*
     Uncomment the line below to remove records with null `id` values
 */
