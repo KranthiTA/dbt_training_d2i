@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: DIM_CUSTOMER
+  - name: DIMCUSTOMER
     description: "Dimension Table to load Customer data"
     columns:
       - name: CUSTOMERSOURCEKEY 
@@ -11,7 +11,7 @@ models:
           - unique
           
 
-  - name: DIM_PRODUCT
+  - name: DIMPRODUCT
     description: "Dimension Table to load Customer data"
     columns:
       - name: ProductSourceKey
@@ -20,7 +20,7 @@ models:
           - unique
           
    
-  - name: DIM_CAMPAIGN
+  - name: DIMCAMPAIGN
     description: "Dimension Table to load Campaign data"
     columns:
       - name: CampaignSourceKey
@@ -29,7 +29,7 @@ models:
           - unique
           
 
-  - name: FACT_SALES
+  - name: FACTSALES
     description: "Fact Sales Table to load the Sales Data"
     columns:
       - name: CUSTOMERID 
