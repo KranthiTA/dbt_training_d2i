@@ -11,6 +11,7 @@ SELECT
      cust.customerid AS CUSTOMERID
     , camp.campaignid AS CAMPAIGNID
     , ddorder.dateid AS ORDERDATEID
+    ,NULL AS ORDERLOCATIONID
     --, dl.locationid AS ORDERLOCATIONID
     , dp.productid AS PRODUCTID
     , ddship.dateid AS SHIPDATEID
@@ -19,6 +20,7 @@ SELECT
     , SAL.PROFIT AS PROFIT
     , SAL.QUANTITY AS QUANTITY
     , SAL.SALES AS SALEAMOUNT
+    ,NULL AS SHIPPINGCOST
     --, SAL.VALUE_SHIPPING_COST AS SHIPPINGCOST
     ,  current_timestamp() AS CREATEDDATE
     , 'fivetran' AS  CREATEDBY
