@@ -1,10 +1,10 @@
 {{
     config(
         materialized='incremental',
-		merge_update_columns = ['campaignid', 'customerid','ORDERDATEID','ORDERLOCATIONID','PRODUCTID','SHIPDATEID']
     )
 }}
 
+		---merge_update_columns = ['campaignid', 'customerid','ORDERDATEID','ORDERLOCATIONID','PRODUCTID','SHIPDATEID']
 
 SELECT
     FACTSALES_SK.nextval AS FACTSALESID,
